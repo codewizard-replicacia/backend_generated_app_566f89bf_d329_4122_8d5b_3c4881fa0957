@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <property name="schemaName" value="generated_app"></property>
+    <property name="author=" value="db-designer"></property>
+    <changeSet id="v1-01-01" author="${author}">
+    
+ <createTable schemaName="${schemaName}" tableName="FrontendScreen">
+	<column name="FeScreenId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="ScreenName" type="VARCHAR(250)" />
+    
+     <column name="ScreenLayout" type="VARCHAR(250)" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="FrontendApp">
+	<column name="AppId" type="BIGINT" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="Documentation" type="VARCHAR(250)" />
+    
+  	
+</createTable>
+	
+  <createTable schemaName="${schemaName}" tableName="FrontendAppSelectedScreens">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="AppId" type="BIGINT" />
+	<column name="FeScreenId" type="SERIAL" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="FrontendAppSelectedScreenIds">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="AppId" type="BIGINT" />
+	<column name="SelectedScreenIds" type="SERIAL" />
+</createTable>
+
+ 	<addForeignKeyConstraint baseTableName="FrontendAppSelectedScreens" baseTableSchemaName="${schemaName}"  baseColumnNames="AppId" constraintName="FrontendScreen_AppId_fk"
+	                                  referencedTableName="FrontendApp" referencedTableSchemaName="${schemaName}" referencedColumnNames="AppId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="FrontendAppSelectedScreens" baseTableSchemaName="${schemaName}"  baseColumnNames="FeScreenId" constraintName="FrontendScreen_FeScreenId_fk"
+	                                  referencedTableName="FrontendScreen" referencedTableSchemaName="${schemaName}" referencedColumnNames="FeScreenId"/>
+ 
+ 	<addForeignKeyConstraint baseTableSchemaName="${schemaName}" baseTableName="FrontendAppSelectedScreenIds" baseColumnNames="AppId" constraintName="FrontendApp_FrontendAppSelectedScreenIds_fk" referencedTableName="FrontendApp"
+                                 	referencedColumnNames="AppId" referencedTableSchemaName="${schemaName}"/>
+ 
+	
+ 
+ 
+	    </changeSet>
+</databaseChangeLog>
