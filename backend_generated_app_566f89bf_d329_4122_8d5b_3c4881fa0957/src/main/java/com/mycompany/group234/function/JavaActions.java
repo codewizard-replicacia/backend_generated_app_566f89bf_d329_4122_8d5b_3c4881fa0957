@@ -11,6 +11,7 @@ import org.springframework.util.CollectionUtils;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Component
 public class JavaActions implements ODataAction {
