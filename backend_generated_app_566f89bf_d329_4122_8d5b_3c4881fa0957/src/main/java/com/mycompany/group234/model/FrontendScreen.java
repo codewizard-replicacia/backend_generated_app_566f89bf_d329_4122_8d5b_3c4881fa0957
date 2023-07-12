@@ -76,7 +76,8 @@ public class FrontendScreen {
   private String screenLayout;
   
   
-  
+  @Column(name = "\"AppId\"")
+  private Integer appId;
   
    
   

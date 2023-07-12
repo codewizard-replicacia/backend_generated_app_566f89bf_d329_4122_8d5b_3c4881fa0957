@@ -19,11 +19,17 @@
                 <Property Name="SelectedScreenIds" Type="Collection(Edm.Int32)" isUnique="false"/>
                 <NavigationProperty Name="SelectedScreens" Type="Collection(Model.FrontendScreen)"/>
             </EntityType>
+            <Action Name="LinkFrontendAppWithFrontendScreen" IsBound="false">
+                <Parameter Name="AppId" Type="Edm.Int64" Nullable="false" />
+                <Parameter Name="FeScreenId" Type="Edm.Int32" Nullable="false" />
+                <ReturnType Type="Edm.Boolean" Nullable="false" />
+            </Action>
             <EntityContainer Name="Container">
                 <EntitySet Name="FrontendScreens" EntityType="Model.FrontendScreen"/>
                 <EntitySet Name="FrontendApps" EntityType="Model.FrontendApp">
                     <NavigationPropertyBinding Path="SelectedScreens" Target="FrontendScreens"/>
                 </EntitySet>
+                <ActionImport Name="LinkFrontendAppWithFrontendScreen" Action="Model.LinkTripWithPlanItem" />
             </EntityContainer>
         </Schema>
     </edmx:DataServices>

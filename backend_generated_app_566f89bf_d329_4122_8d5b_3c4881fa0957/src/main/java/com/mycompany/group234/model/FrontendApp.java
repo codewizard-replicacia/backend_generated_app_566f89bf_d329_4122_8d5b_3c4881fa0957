@@ -80,12 +80,9 @@ public class FrontendApp {
   
   
    
-	@OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
-@JoinTable(
-            name="\"FrontendAppSelectedScreens\"",
-            joinColumns = @JoinColumn( name="\"AppId\""),
-            inverseJoinColumns = @JoinColumn( name="\"FeScreenId\""), schema = "\"generated_app\"")
-private List<FrontendScreen> selectedScreens = new ArrayList<>();
+  @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
+  @JoinColumn(name = "\"AppId\"")
+  private List<FrontendScreen> selectedScreens = new ArrayList<>();
   
   
   
